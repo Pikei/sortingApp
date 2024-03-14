@@ -22,31 +22,13 @@ class QuickSort(private var arr: IntArray) {
         var l: Int
         var r: Int
         do {
-            l = leftIndex(start, end, pivot)
-            r = rightIndex(start, end, pivot)
+            l = (start until end).firstOrNull { arr[it] > pivot }?: end
+            r = (end-1 downTo start).firstOrNull { arr[it] < pivot }?: start
             if (l < r)
                 swap(l, r)
         } while (l < r)
         swap(l, end)
         return l
-    }
-
-    private fun leftIndex(start: Int, end: Int, pivot: Int): Int {
-        for (i in start until end) {
-            if (arr[i] > pivot) {
-                return i
-            }
-        }
-        return end
-    }
-
-    private fun rightIndex(start: Int, end: Int, pivot: Int): Int {
-        for (i in end-1 downTo start) {
-            if (arr[i] < pivot) {
-                return i
-            }
-        }
-        return start
     }
 
     private fun swap(i1: Int, i2: Int) {
@@ -57,7 +39,6 @@ class QuickSort(private var arr: IntArray) {
 
     private fun pivotIndex(start: Int, end: Int): Int {
         return start + (end-start) / 2
-
     }
 
     fun getArray(): IntArray {

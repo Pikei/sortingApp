@@ -2,10 +2,7 @@ package com.sortingapp.androidsample
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.sortingapp.androidsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -54,8 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun quickSortAction(view: View): IntArray {
         val quickSort = QuickSort(getNumbers())
         quickSort.sort()
-        val arr = quickSort.getArray()
-        return arr
+        return quickSort.getArray()
     }
 
     private fun printResult(method: String, numbers: IntArray) {
