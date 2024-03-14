@@ -7,6 +7,14 @@ class QuickSort(private var arr: IntArray) {
         quickSort(start, end)
     }
 
+    private fun quickSort(start: Int, end: Int) {
+        if(start < end) {
+            val i = partition(start, end)
+            quickSort(start, i-1)
+            quickSort(i+1, end)
+        }
+    }
+
     private fun partition(start: Int, end: Int): Int {
         val pivotIndex = pivotIndex(start, end)
         val pivot = arr[pivotIndex]
@@ -16,13 +24,10 @@ class QuickSort(private var arr: IntArray) {
         do {
             l = leftIndex(start, end, pivot)
             r = rightIndex(start, end, pivot)
-
-            if (l < r) {
+            if (l < r)
                 swap(l, r)
-            } else {
-                swap(l, end)
-            }
-        } while (l <= r && r - l != 1)
+        } while (l < r)
+        swap(l, end)
         return l
     }
 
@@ -32,16 +37,16 @@ class QuickSort(private var arr: IntArray) {
                 return i
             }
         }
-        return 0
+        return end
     }
 
     private fun rightIndex(start: Int, end: Int, pivot: Int): Int {
-        for (i in end downTo start) {
+        for (i in end-1 downTo start) {
             if (arr[i] < pivot) {
                 return i
             }
         }
-        return 0
+        return start
     }
 
     private fun swap(i1: Int, i2: Int) {
@@ -50,15 +55,9 @@ class QuickSort(private var arr: IntArray) {
         arr[i2] = temp
     }
 
-    private fun quickSort(start: Int, end: Int) {
-        if(start < end) {
-            val i = partition(start, end)
-            quickSort(start, i-1)
-            quickSort(i+1, end)
-        }
-    }
     private fun pivotIndex(start: Int, end: Int): Int {
-        return (start + end) / 2
+        return start + (end-start) / 2
+
     }
 
     fun getArray(): IntArray {

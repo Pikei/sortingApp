@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
     private fun quickSortAction(view: View): IntArray {
         val quickSort = QuickSort(getNumbers())
         quickSort.sort()
-        return quickSort.getArray()
+        val arr = quickSort.getArray()
+        return arr
     }
 
     private fun printResult(method: String, numbers: IntArray) {
